@@ -1,0 +1,35 @@
+body{
+    font-size: 14px;
+}
+header .blog-masthead {
+    background-color: #B34848 !important;
+  }
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6, 
+  .blog-title {
+    color: #B34848 !important;
+  }
+  .blog-title:hover{
+    color:#b34848;
+    text-decoration: underline;
+  }
+  .m{
+    color: blue;
+  }
+  .f{
+    color: pink;
+  }
+.comment-content{
+  list-style: none !important;
+  padding: 0 !important;
+}

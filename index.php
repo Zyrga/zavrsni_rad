@@ -1,11 +1,13 @@
 <?php
+
     $servername = "";
-    $username = "";
+    $username = "root";
     $password = "";
     $dbname = "";
 
     try {
         $connection = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e)
@@ -17,23 +19,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="favicon.ico">
     <title>Vivify Blog</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-    <link href="styles/blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+<body class="va-l-page va-l-page--homepage">
 
-<?php include('header.php') ?>
-<main>
-    <?php include('all-posts.php') ?> 
-    <?php include('sidebar.php') ?>
-</main>
-<?php include('footer.php') ?>
+    <?php include('header.php') ?>
+
+    <div class="va-l-container">
+        <main class="va-l-page-content">
+
+            <?php
+
+                $sql = "SELECT posts.id AS postId, posts.created_at, posts.body, posts.title
+                 FROM posts ORDER BY posts.created_at DESC";
+                $statement = $connection->prepare($sql);
+
+                $statement->execute();
+
+                $statement->setFetchMode(PDO::FETCH_ASSOC);
+
+                $posts = $statement->fetchAll();
+
+                    // echo '<pre>';
+                    // var_dump($posts);
+                    // echo '</pre>';
+
+            ?>
+
+            <?php
+                foreach ($posts as $post) {
+            ?>
+
+                    <article class="va-c-article">
+                        <header>
+                            <h1><a href="single-post.php?post_id=<?php echo($post['postId']) ?>"><?php echo($post['title']) ?></a></h1>
+                            <div class="va-c-article__meta"><?php echo($post['created_at']) ?></div>
+                        </header>
+
+                        <div>
+                            <p><?php echo($post['body']) ?></p>
+                        </div>
+                    </article>
+
+            <?php
+                }
+            ?>
+
+
+            <div class="va-c-paginator">
+                <a href="all-posts.php" title="All posts">All Posts</a>
+            </div>
+        </main>
+    </div>
+
+    <?php include('footer.php'); ?>
+
+</body>
+</html>

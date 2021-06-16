@@ -17,4 +17,10 @@
             <p class="lead blog-description">An example blog template built with Bootstrap.</p>
         </div>
     </div>
+    
+    <form action="create-post.php" method="get">
+    <input type="text" name="id">
+    <input type="submit" value="Open Form">
+    </form>
+
 </header>

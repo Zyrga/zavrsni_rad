@@ -25,7 +25,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <title>Vivify Blog</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="va-l-page va-l-page--homepage">
 

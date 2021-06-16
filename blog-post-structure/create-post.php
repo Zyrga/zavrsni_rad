@@ -46,7 +46,7 @@
         }
 
         if(!empty($title) && !empty($body)) {
-            $sql = "INSERT INTO posts (title, body, published) VALUES ('$title', '$body', 1, 1)";
+            $sql = "INSERT INTO posts (title, body, published) VALUES ('$title', '$body', 1)";
     
             try {
                 $statement = $connection->prepare($sql);
@@ -62,7 +62,7 @@
 <body>
 <form action="create-post.php" method="post">
     Title: <input type="text" name="title"><br>
-    Body: <input type="text" name="body"><br>
+    Body: <input type="text" name="body"><br>   
     <input type="submit">
 </form>
 
